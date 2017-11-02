@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnEscribirExterna;
     private Button btnLeer;
     private Button btnCodificacion;
+    private Button btnExplorar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnLeer.setOnClickListener(this);
         btnCodificacion = (Button)findViewById(R.id.btnCodificacion);
         btnCodificacion.setOnClickListener(this);
+        btnExplorar = (Button)findViewById(R.id.btnExplorar);
+        btnExplorar.setOnClickListener(this);
     }
 
     @Override
@@ -46,6 +49,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnCodificacion:
                 i = new Intent(MainActivity.this, CodificacionActivity.class);
+                startActivity(i);
+                break;
+            case R.id.btnExplorar:
+                i = new Intent(MainActivity.this, ExploracionActivity.class);
                 startActivity(i);
                 break;
         }
