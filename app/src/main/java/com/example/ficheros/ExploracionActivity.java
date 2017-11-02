@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.nbsp.materialfilepicker.MaterialFilePicker;
 import com.nbsp.materialfilepicker.ui.FilePickerActivity;
 
+import java.io.File;
 import java.util.regex.Pattern;
 
 public class ExploracionActivity extends AppCompatActivity implements View.OnClickListener {
@@ -83,8 +84,9 @@ public class ExploracionActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Memoria miMemoria = new Memoria(getApplicationContext());
+        String[] rutaCortada = (data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH)).split(File.pathSeparator);
         if (requestCode == 1 && resultCode == RESULT_OK) {
-            txtInfo.setText(data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH));
+            txtInfo.setText((miMemoria.leerExterna(rutaCortada[rutaCortada.length - 1], "UTF-8")).getContenido());
         }
     }
 }

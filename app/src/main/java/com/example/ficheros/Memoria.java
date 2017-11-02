@@ -132,7 +132,7 @@ public class Memoria {
         return leer(miFichero, codigo);
     }
 
-    private Resultado leer(File fichero, String codigo) {
+    public Resultado leer(File fichero, String codigo) {
         FileInputStream fis = null;
         InputStreamReader isw = null;
         BufferedReader in = null;
