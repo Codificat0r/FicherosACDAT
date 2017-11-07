@@ -13,6 +13,7 @@ import com.nbsp.materialfilepicker.MaterialFilePicker;
 import com.nbsp.materialfilepicker.ui.FilePickerActivity;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.util.regex.Pattern;
 
 public class ExploracionActivity extends AppCompatActivity implements View.OnClickListener {
@@ -62,6 +63,14 @@ public class ExploracionActivity extends AppCompatActivity implements View.OnCli
         botonAbrir = (Button) findViewById(R.id.btnAbrir);
         txtInfo = (TextView) findViewById(R.id.txvInfo);
         botonAbrir.setOnClickListener(this);
+        File file = new File("/storage/sdcard/newfile.txt");
+
+        try {
+            file.createNewFile();
+            FileOutputStream fos = new FileOutputStream(file);
+            fos.write(12);
+        } catch (Exception e) {
+        }
     }
 
     @Override
@@ -84,9 +93,11 @@ public class ExploracionActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Memoria miMemoria = new Memoria(getApplicationContext());
+        if (resultCode != 0) {
         String[] rutaCortada = (data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH)).split(File.pathSeparator);
         if (requestCode == 1 && resultCode == RESULT_OK) {
             txtInfo.setText((miMemoria.leerExterna(rutaCortada[rutaCortada.length - 1], "UTF-8")).getContenido());
+        }
         }
     }
 }
